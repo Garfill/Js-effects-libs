@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change Cover</title>
+    <style>
+        body{background: #ffdddd;}
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        #selector,#titles{
+            text-align: center;
+        }
+        #selector{
+            width: 50%;
+            margin: 30px auto;
+        }
+        .select{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            border: 0px solid snow;
+        }
+        #red{background: red;}
+        #blue{background: skyblue;}
+        #green{background: yellowgreen;}
+
+        #titles{
+            width: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            background: red;
+        }
+        .title{
+            color: black;
+            width: 20%;
+            height: 20px;
+            float: left;
+            border-left: 2px solid snow;
+            border-right: 2px solid snow;
+        }
+        .selected{
+            border: 2px  snow solid;           
+        }
+    </style>
+</head>
+<body>
+    <div id="selector">
+        <div class="select" id="red"></div>
+        <div class="select" id="blue"></div>
+        <div class="select" id="green"></div>
+    </div>
+
+    <div id="titles">
+        <div class="title">News</div>
+        <div class="title">Magazine</div>
+        <div class="title">Sport</div>
+        <div class="title">TV Show</div>
+        <div class="title">Cartoon</div>
+    </div>
+
+    <script>
+        var body = document.body;
+        var selector = document.getElementsByClassName("select");
+        var titles = document.getElementById("titles");
+        var color = ["#ffdddd","#a3c5a8","#cccccc"];
+        var num =0;                                         //用num记住上一个选择的位置以便消除
+        for(let i=0;i<selector.length;i++){
+            selector[i].onclick = function(){
+                selector[num].classList.remove("selected");
+                selector[i].classList.add("selected");
+                num = i;
+                body.style.background = color[i];
+                titles.style.background = selector[i].id;
+            };
+        }
+    </script>
+</body>
+</html>
