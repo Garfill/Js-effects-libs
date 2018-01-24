@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DIV控制</title>
+    <style>
+        .container {
+            width: 100%;
+            text-align: center;
+        }
+
+        #demo {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            margin: 50px auto;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="buttons">
+            <button class="btn">Change color</button>
+            <button class="btn">Wider</button>
+            <button class="btn">Higher</button>
+            <button class="btn">Vanish</button>
+            <button class="btn">Reset</button>
+
+        </div>
+        <div id="show">
+            <div id="demo"></div>
+        </div>
+    </div>
+
+    <script>
+        var demo = document.getElementById("demo");
+        var btns = document.getElementsByClassName("btn");
+        var keys = ["background", "width", "height", "display"];
+        var effs = ["red", "300px", "400px", "none"];
+        var len = btns.length;
+
+        function change(element, key, eff) {
+            element.style.cssText += key + ":" + eff;
+        }
+
+        for (var i = 0; i < len; i++) {
+            btns[i].onclick = function (num) {
+                return function () {
+                    (num == len-1) && (demo.style.cssText = '');
+                    console.log(num);
+                    change(demo, keys[num], effs[num]);
+                };
+            }(i);
+        }
+
+        // ES6
+        
+        // for(let i=0;i<len;i++){
+        //     btns[i].onclick = function(){
+        //         (i == len-1) && (demo.style.cssText = '');
+        //         change(demo, keys[i], effs[i]);
+        //     };
+        // }
+    </script>
+</body>
+
+</html>
