@@ -49,9 +49,9 @@
         }
 
         for (var i = 0; i < len; i++) {
-            btns[i].onclick = function (num) {
+            btns[i].onclick = function (num) {                  //利用自执行函数截获变量i
                 return function () {
-                    (num == len-1) && (demo.style.cssText = '');
+                    (num == len-1) && (demo.style.cssText = '');        
                     console.log(num);
                     change(demo, keys[num], effs[num]);
                 };
