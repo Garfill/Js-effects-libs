@@ -36,8 +36,9 @@
         var btn = document.getElementsByTagName("button")[0];
         var info = document.getElementsByTagName("input");
         btn.onclick = function () {
-            alert(info[0].value)
-            alert(info[1].value);
+            for(let i=0;i<info.length;i++){
+                alert(info[i].value);
+            }
 
         };
     </script>
