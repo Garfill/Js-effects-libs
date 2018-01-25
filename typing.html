@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Select Typer</title>
+    <style>
+        .container {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+        }
+        #typer {
+            width: 40px;
+            margin: auto;
+            background: snow;
+            border: 2px solid blue;
+            border-radius: 5px;
+            color: black;
+            display: none;
+        }
+
+        .typer {
+            border-bottom: 1px dashed blue;
+        }
+        .typer:hover{
+            background: red;
+            color: snow;
+            cursor: pointer;
+        }
+        #typer.active{
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <button>输入法</button>
+        <div id="typer">
+            <div class="typer">谷歌</div>
+            <div class="typer">搜狗</div>
+            <div class="typer">百度</div>
+            <div class="typer">QQ</div>
+            <div class="typer" id="close">关闭</div>
+        </div>
+    </div>
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var typer = document.getElementById("typer");
+        var clo = document.getElementById("close");
+
+        btn.onclick = change;
+        clo.onclick = change;
+        function change(){
+            // alert('hello');
+            typer.classList.toggle("active");
+        }
+    </script>
+</body>
+
+</html>
