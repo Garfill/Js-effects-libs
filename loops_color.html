@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change color with loops</title>
+
+    <style>
+        button {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #test {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .test {
+            width: 70px;
+            height: 70px;
+            background: red;
+            display: inline-block;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Change</button>
+    <div id="test">
+        <div class="test"></div>
+        <div class="test"></div>
+        <div class="test"></div>
+        <div class="test"></div>
+    </div>
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var test = document.getElementsByClassName("test");
+        var i;
+        btn.onclick = function (num) {
+            return function (num) {
+                for (num = 0; num < test.length; num++) {
+                    test[num].style.background = "yellow";
+                }
+            }
+        }(i);
+    </script>
+</body>
+
+</html>
