@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pass Arguments</title>
+
+    <style>
+        .out {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        button{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out">
+        <input type="text" name="prov" id="prov" placeholder="省" autocomplete="off" />
+        <input type="text" name="city" id="city" placeholder="市" autocomplete="off" />
+        <button>Done</button>
+    </div>
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var info = document.getElementsByTagName("input");
+        btn.onclick = function () {
+            alert(info[0].value)
+            alert(info[1].value);
+
+        };
+    </script>
+</body>
+
+</html>
