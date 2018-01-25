@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password</title>
+    <style>
+        .out{
+            width: 50%;
+            margin: auto;
+        }
+        .inn{
+            width: 100%;
+            text-align: center;
+        }
+        #tips{
+            background: yellow;
+            color: red;
+            display: none;
+        }
+        .out:hover #tips{             /*#select:hover+#tips*/
+            display: block;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="out">
+        <div class="inn" id="select">
+            <input type="checkbox" name="pd" id="pd">
+            <label for="pd">Remember your password for 2 weeks.</label>
+        </div>
+        <div class="inn" id="tips">Do not do that when your network is not save</div>
+    </div>
+</body>
+
+</html>
