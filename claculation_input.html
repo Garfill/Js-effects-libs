@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Caculation</title>
+
+    <style>
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        input {
+            display: block;
+        }
+
+        input#nums {
+            width: 300px;
+        }
+
+        #result {
+            font-size: 120px;
+            color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" name="nums" id="nums" placeholder="Input some nums seperate with ," autocomplete="off">
+        <input type="button" value="Done" id="add">
+        <div id="result"></div>
+    </div>
+    <script>
+        var done = document.getElementById("add");
+        var res = document.getElementById("result");
+        var init = document.getElementById("nums");
+        var arr = [];
+
+        done.onclick = function () {
+                var sum = 0;
+                arr = init.value.split(",");
+                for(var num = 0; num < arr.length; num++){
+                    if (typeof Number(arr[num]) == "number") {
+                        // console.log(arr);
+                        sum += parseInt(arr[num]);
+                    }else{
+                        sum = NaN;
+                        break;
+                    }
+                }
+                res.innerHTML=sum;
+        };
+
+
+
+        // function () {
+        //     let sum = 0;
+
+        //     if (init.value) {
+        //         arr = init.value.split(",")
+        //         // console.log(arr.length)
+        //         for (let num = 0; num < arr.length; num++) {
+        //             console.log("num=" + num);
+        //             if (typeof Number(arr[num]) == "number") {
+        //                 sum += Number(arr[num]);
+        //             } else {
+        //                 sum = NaN;
+        //                 break;
+        //             }
+        //         }
+        //         res.innerHTML=sum;
+        //     }
+
+        // };
+    </script>
+</body>
+
+</html>

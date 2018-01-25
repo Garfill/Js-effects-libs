@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pop news</title>
+
+    <style>
+        .outer {
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        .context {
+            background: gray;
+            margin-bottom: 20px;
+            border: 3px solid gray;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="context"><em>2017年新年伊始，</em> 世界经济低迷不振，逆全球化暗流涌动，国际形势动荡多变。多事之秋，世界经济论坛2017年年会主题确定为“领导力：应势而为、勇于担当”。回应施瓦布多次诚邀，中国最高领导人首次出席论坛年会。习近平主席对他坦言：“您多次邀请我来达沃斯，我一直在考虑什么时间来最合适。来得早不如来得巧。当前，关于世界经济有各种议论，在这个时刻发出中国声音更有意义。”</div>
+        <div class="context">经济全球化确实带来了新问题，但我们不能就此把经济全球化一棍子打死，而是要适应和引导好经济全球化，消解经济全球化的负面影响，让它更好惠及每个国家、每个民族。”面对弥漫全球的反全球化迷雾，习近平主席深刻诠释经济全球化的客观必然性，强调到世界市场的大海中经风雨、见世面，主动适应全球化，“在游泳中学会游泳”，才是正确的战略抉择。</div>
+        <div class="context"><span>当今世界经济增长、治理、</span> 发展模式存在必须解决的问题。”在深度把脉世界经济突出矛盾的基础上，习近平主席强调：坚持创新驱动，打造富有活力的增长模式；坚持协同联动，打造开放共赢的合作模式；坚持与时俱进，打造公正合理的治理模式；坚持公平包容，打造平衡普惠的发展模式。四个方面的精辟阐释，既是高瞻远瞩的思考，又是着眼根本的方案，为世界经济发展指明了方向和路径</div>
+        <div class="context">经济全球化曾经被人们视为<span style="color:red">阿里巴巴的山洞</span>，现在又被不少人看作潘多拉的盒子”“世界经济的大海，你要还是不要，都在那儿，是回避不了的”“搞保护主义如同把自己关进黑屋子，看似躲过了风吹雨打，但也隔绝了阳光和空气”……一系列精彩论述，成为适应、引导经济全球化的有力宣言。</div>
+    </div>
+
+    <script>
+        var cons = document.getElementsByClassName("context");
+
+        for (let i = 0; i < cons.length; i++) {
+            cons[i].addEventListener("click", function () {
+                alert(cons[i].innerHTML);
+            }, false)
+        }
+    </script>
+</body>
+
+</html>
