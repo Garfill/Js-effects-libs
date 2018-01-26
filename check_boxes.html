@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Check boxes</title>
+    <style>
+        .outer {
+            width: 120px;
+            margin: auto;
+            background: moccasin;
+            border: 1px solid grey;
+            padding: 5px;
+        }
+
+        .outer .box {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .outer .box:nth-child(1) {
+            border-bottom: 2px solid gray;
+        }
+
+        .outer #rev {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="box">
+            <input class="all" type="checkbox" name="all" id="all" autocomplete="off">
+            <label for="all">ALL</label>
+        </div>
+        <div id="rev">
+            <a href="javascript:void(0)">REVERSE</a>
+        </div>
+        <div class="box">
+            <input class="item" type="checkbox" name="one" id="one" autocomplete="off">
+            <label for="one">ONE</label>
+        </div>
+        <div class="box">
+            <input class="item" type="checkbox" name="two" id="two" autocomplete="off">
+            <label for="two">TWO</label>
+        </div>
+        <div class="box">
+            <input class="item" type="checkbox" name="three" id="three" autocomplete="off">
+            <label for="three">THREE</label>
+        </div>
+        <div class="box">
+            <input class="item" type="checkbox" name="four" id="four" autocomplete="off">
+            <label for="four">FOUR</label>
+        </div>
+        <div class="box">
+            <input class="item" type="checkbox" name="five" id="five" autocomplete="off">
+            <label for="five">FIVE</label>
+        </div>
+    </div>
+
+    <script>
+        var all = document.getElementById("all");
+        var items = document.getElementsByClassName("item");
+        var rev = document.getElementById("rev");
+        var boxes = document.getElementsByClassName("box");
+        var num = 0;
+
+        function check_all(){               //核查函数（核心）
+            let i;
+            let n=0;
+            for(i=0;i<items.length;i++){
+                items[i].checked&&n++;
+            }
+            all.checked = (n == items.length);
+        }
+        // Select all
+        all.onclick = function () {
+            for(let i=0;i<items.length;i++){
+                items[i].checked = this.checked;
+            }
+            check_all();
+
+            // let flag = all.checked;
+            // for (let i = 0; i < items.length; i++) {
+            //     items[i].checked = flag;
+            // }
+            // // console.log(flag);
+            // flag==true ? num=5 : num =0;
+        };
+
+        //reverse
+        rev.onclick = function () {
+            for(let i=0;i<items.length;i++){
+                items[i].checked = !items[i].checked;
+            }
+            check_all();
+
+
+
+
+            // let arr = [0, 1, 2, 3, 4];
+            // let arr_c = [];
+            // if (all.checked) {
+            //     all.checked = false;
+            // }
+            // for (let i = 0; i < items.length; i++) {  //先消除
+            //     if (items[i].checked) {
+            //         items[i].checked = !items[i].checked;
+            //         num -= 1;
+            //         // console.log("check out"+";num" + i +" ;total:" +num  );
+            //         arr_c.push(i);
+            //         // console.log(arr_c);
+                    
+            //     }
+            // }
+            
+
+            // for (let i = 0; i < items.length; i++) {        //后添加
+            //     if (arr_c.indexOf(i)<0) {
+            //         items[i].checked = !items[i].checked;
+            //         num += 1;
+            //         // console.log("check in"+";num" + i +" ;total:" +num);
+            //         num == 5 ? all.checked = true : void(0);
+            //     }
+            // }
+            
+
+        };
+
+        //single
+        for (let i = 0; i < items.length; i++) {
+            items[i].onclick = function () {
+                check_all();        //每单按一次核算一次
+
+
+
+                // if (items[i].checked) {
+                //     num += 1;
+                //     // console.log("check in"+";num" + i +" ;total:" +num);
+                //     num == 5 ? all.checked = true : void(0);
+                // } else {
+                //     num -= 1;
+                //     // console.log("check out"+";num" + i +" ;total:" +num);
+                //     num < 5 ? all.checked = false : void(0);
+                // }
+            }
+        };
+    </script>
+
+
+</body>
+
+</html>
