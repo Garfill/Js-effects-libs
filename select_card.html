@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <style>
+        .container {
+            width: 500px;
+            margin: 10px auto;
+        }
+
+        #tabs {
+            height: 30px;
+            width: 100%;
+            background: black;
+            color: white;
+            border: 1px solid black;
+        }
+
+        .tab {
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            float: left;
+            text-align: center;
+            cursor:pointer;
+        }
+
+        .act {
+            background: grey;
+        }
+
+        #content {
+            width: 100%;
+            position: relative;
+        }
+
+        .item {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid black;
+            border-top: 0px;
+            display: none;
+        }
+
+        .acti {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="tabs">
+            <div class="tab act">1</div>
+            <div class="tab">2</div>
+            <div class="tab">3</div>
+        </div>
+        <div id="content">
+            <div class="item acti" id="item1">
+                <ul>
+                    <li>网页特效原理分析</li>
+                    <li>响应用户操作</li>
+                    <li>提示框效果</li>
+                    <li>事件驱动</li>
+                    <li>元素属性操作</li>
+                    <li>动手编写第一个JS特效</li>
+                    <li>引入函数</li>
+                    <li>网页换肤效果</li>
+                </ul>
+            </div>
+            <div class="item" id="item2">
+                <ul>
+                    <li>惊不惊喜</li>
+                </ul>
+            </div>
+            <div class="item" id="item3">
+                <ul>
+                    <li>JavaScript组成：ECMAScript、DOM、BOM，JavaScript兼容性来源</li>
+                    <li> JavaScript出现的位置、优缺点</li>
+                    <li>闭包：什么是闭包、简单应用、闭包缺点</li>
+                    <li> 运算符：算术、赋值、关系、逻辑、其他运算符</li>
+                    <li> 变量、类型、typeof、数据类型转换、变量作用域</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var tabs = document.getElementsByClassName("tab");
+        var item = document.getElementsByClassName("item");
+        var current = 0;
+
+        function show(pre, next) {
+            tabs[pre].classList.remove("act");
+            tabs[next].classList.add("act");
+            item[pre].classList.remove("acti");
+            item[next].classList.add("acti");
+        }
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].onclick = function () {
+                show(current, i)
+                current = i;
+            };
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片隐藏</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .contain {
+            width: 500px;
+            background: skyblue;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .cotain ul:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .contain ul li {
+            list-style: none;
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+        }
+
+        .contain ul li .word {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: silver;
+            font: 50px;
+            cursor: pointer;
+        }
+
+        .contain ul li img {
+            height: 90px;
+            width: 90px;
+            display: none;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        .z {
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <ul>
+            <li>
+                <div class="word">BOOK</div>
+                <img src="./../img/icon/book.png" alt="book">
+            </li>
+            <li>
+                <div class="word">MAIL</div>
+                <img src="./../img/icon/mail.png" alt="mail">
+            </li>
+            <li>
+                <div class="word">HOUSE</div>
+                <img src="./../img/icon/house.png" alt="house">
+            </li>
+            <li>
+                <div class="word">TEL</div>
+                <img src="./../img/icon/tel.png" alt="tel">
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        var lis = document.getElementsByTagName("li");
+        var word = document.getElementsByClassName("word");
+        var imgs = document.images;
+
+        for (let i = 0; i < word.length; i++) {      //记得每次用局部变量要初始化
+            word[i].onmouseover = function () {
+                // lis[i].className = "z";
+                imgs[i].style.display = "block";
+            };
+            word[i].onmouseout = function () {
+                // lis[i].className = "";
+                imgs[i].style.display = "none";
+            };
+
+            //下面两个函数是为了优化，因为当图片显示时，为绝对布局，上升半层，鼠标有可能是指到了图片而不是下面的文字上
+            //所以要使用下面两个函数
+
+
+            imgs[i].onmouseover = function () {
+                // lis[i].className = "z";
+                this.style.display = "block"
+            };
+            imgs[i].onmouseout = function () {
+                // lis[i].className = "";
+                this.style.display = "none"
+            }
+        }
+    </script>
+</body>
+
+</html>

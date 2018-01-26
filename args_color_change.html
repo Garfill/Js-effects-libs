@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change color</title>
+    <style>
+        .container {
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        .info {
+            margin-bottom: 8px;
+        }
+
+        .info label {
+            margin-right: 8px;
+        }
+
+        .info input {
+            height: 20px;
+            border: 1px solid grey;
+        }
+
+        #show {
+            width: 100%;
+            height: 100px;
+            background: yellow;
+            border: 1px gray solid;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="info">
+            <label for="attr">属性名</label>
+            <input type="text" name="attr" id="attr" autocomplete="off">
+        </div>
+        <div class="info">
+            <label for="valu">属性值</label>
+            <input type="text" name="valu" id="valu" autocomplete="off">
+        </div>
+        <div class="btns">
+            <button id="done">Done</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div id="show">输入不同属性和属性值，改变样式</div>
+    </div>
+
+    <script>
+        var attr = document.getElementById("attr");
+        var valu = document.getElementById("valu");
+        var done = document.getElementById("done");
+        var reset = document.getElementById("reset");
+        var show = document.getElementById("show");
+
+        done.onclick = function () {
+            show.style.cssText += (attr.value+":"+valu.value);
+        };
+        reset.onclick = function () {
+            show.removeAttribute("style");
+        }
+    </script>
+</body>
+
+</html>

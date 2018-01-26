@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单一按钮</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .contain {
+            width: 200px;
+            margin: auto;
+            border: 1px solid gray;
+        }
+
+        #btn {
+            width: 100%;
+            height: 30px;
+            padding-left: 10px;
+            line-height: 30px;
+            background: salmon;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-image: url("../img/arrow.gif");
+            background-position: 180px 10px;
+        }
+
+        #btn.on{
+            background-position: 180px -15px;
+        }
+
+        #songs{
+            background: skyblue;
+            display: none;
+        }
+        #songs.active{
+            display: block;
+        }
+        .song{
+            padding: 10px;
+            list-style: none;
+        }
+        .song:hover{
+            background: snow;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <div id="btn" class="">List...</div>
+        <ul id="songs">
+            <li class="song">Like that</li>
+            <li class="song">X</li>
+            <li class="song">JI</li>
+            <li class="song">JWE</li>
+            <li class="song">JIOWIEJ</li>
+        </ul>
+    </div>
+    <script>
+        var btn = document.getElementById("btn");
+        var songs = document.getElementById("songs");
+        var flag = "off";
+        btn.onclick = function(){
+           songs.classList.toggle("active");
+           btn.classList.toggle("on");
+        };
+    </script>
+</body>
+
+</html>

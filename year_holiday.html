@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>年假</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .contain {
+            width: 240px;
+            margin: 10px auto;
+            background: silver;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        ul li {
+            list-style: none;
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            float: left;
+            background: #424242;
+            text-align: center;
+            color: snow;
+            cursor: pointer;
+        }
+
+        ul li .cn {
+            height: 30px;
+            line-height: 30px;
+            font: bolder;
+        }
+
+        ul li .en {
+            height: 20px;
+            line-height: 20px;
+        }
+
+        ul li.current {
+            background: white;
+            color: palevioletred;
+        }
+
+        .msg {
+            width: 100%;
+            margin: 10px auto;
+            background: silver;
+            padding-top: 180px;
+        }
+        .msg>div{
+            color: red;
+            background: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="contain">
+        <div class="mon">
+            <ul>
+                <li class="current">
+                    <div class="cn">1月</div>
+                    <div class="en">JAN</div>
+                </li>
+                <li>
+                    <div class="cn">2月</div>
+                    <div class="en">FEB</div>
+                </li>
+                <li>
+                    <div class="cn">3月</div>
+                    <div class="en">MAR</div>
+                </li>
+                <li>
+                    <div class="cn">4月</div>
+                    <div class="en">APR</div>
+                </li>
+                <li>
+                    <div class="cn">5月</div>
+                    <div class="en">MAY</div>
+                </li>
+                <li>
+                    <div class="cn">6月</div>
+                    <div class="en">JUN</div>
+                </li>
+                <li>
+                    <div class="cn">7月</div>
+                    <div class="en">JUL</div>
+                </li>
+                <li>
+                    <div class="cn">8月</div>
+                    <div class="en">AUG</div>
+                </li>
+                <li>
+                    <div class="cn">9月</div>
+                    <div class="en">SEP</div>
+                </li>
+                <li>
+                    <div class="cn">10月</div>
+                    <div class="en">OCT</div>
+                </li>
+                <li>
+                    <div class="cn">11月</div>
+                    <div class="en">NOV</div>
+                </li>
+                <li>
+                    <div class="cn">12月</div>
+                    <div class="en">DEC</div>
+                </li>
+            </ul>
+        </div>
+        <div class="msg">
+            <div>
+                <h4 id="cn"></h4>
+                <p id="en"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        var now = 0;
+        var mons = document.getElementsByTagName("li");
+        var cns = document.getElementsByClassName("cn");
+        var ens = document.getElementsByClassName("en");
+        var cn = document.getElementById("cn");
+        var en = document.getElementById("en");
+
+
+
+
+
+        for (let i = 0; i < mons.length; i++) {
+            mons[i].onmouseover = function () {
+                mons[now].classList.remove("current")
+                mons[i].classList.add("current");
+                cn.innerHTML = cns[i].innerHTML;
+                en.innerHTML = ens[i].innerHTML;
+                now = i;
+            }
+        }
+    </script>
+</body>
+
+</html>
