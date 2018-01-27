@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>电子时钟</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 35px;
+        }
+
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;              /*利用flex布局实现container容器内的垂直对齐*/
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .day,
+        .time {
+            display: inline-block;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="clock">
+            <div id="day">
+                <div class="day" id="date"></div>
+            </div>
+            <div id="time">
+                <div class="time" id="hour"></div>
+                <div class="time" id="minute"></div>
+                <div class="time" id="second"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getTime () {
+            var now = new Date();
+            var month = now.getMonth()+ 1;  //注意getMonth返回0-11；
+            var date = now.getDate();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            document.getElementById('date').innerText=month+'月'+date+'日';
+            document.getElementById('hour').innerText=hour+': ';
+            document.getElementById('minute').innerText=minute+': ';
+            document.getElementById('second').innerText=second;
+        }
+
+        setInterval(getTime,1)
+    </script>
+</body>
+
+</html>
