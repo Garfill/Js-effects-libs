@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网页计算器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #cal {
+            width: 320px;
+            background: black;
+            color: snow;
+            font-size: 50px;
+            margin: 20px auto;
+        }
+
+        #top {
+            font-size: 12px;
+            text-align: end;
+        }
+
+        #screen {
+            background: rgb(241, 241, 241);
+            width: 100%;
+            height: 140px;
+            color: black;
+            text-align: end;
+            overflow: hidden;
+        }
+
+        #screen #topp {
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+        }
+
+        #screen #low {
+            height: 100px;
+            line-height: 100px;
+        }
+
+        #btn {
+            width: 100%;
+            background: gray;
+            padding: 20px 20px 0px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #btn ul li {
+            list-style: none;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        #btn .btn {
+            font-size: 25px;
+            text-align: center;
+            background: linear-gradient(0deg, black, snow 98%);
+            border-radius: 10px;
+            width: 60px;
+            height: 40px;
+            cursor: pointer;
+            line-height: 40px;
+        }
+
+        #btn .btn:hover {
+            background: linear-gradient(180deg, black, snow 98%);
+        }
+
+        #btn .ac {
+            font-size: 25px;
+            text-align: center;
+            background: linear-gradient(0deg, orangered, snow 98%);
+            border-radius: 10px;
+            width: 60px;
+            height: 40px;
+            cursor: pointer;
+            line-height: 40px;
+        }
+
+        #btn .ac:hover {
+            background: linear-gradient(180deg, orangered, snow 98%);
+        }
+
+        #btn .char {
+            background: linear-gradient(0deg, rgb(180, 137, 19), snow 98%);
+        }
+
+        #btn .char:hover {
+            background: linear-gradient(180deg, rgb(180, 137, 19), snow 98%);
+        }
+
+        .char1 {
+            height: 90px;
+            width: 60px;
+            line-height: 90px;
+            border-radius: 10px;
+            text-align: center;
+            position: absolute;
+            top: 170px;
+            left: 230px;
+            background: linear-gradient(0deg, rgb(180, 19, 19), white 100%);
+            cursor: pointer;
+        }
+
+        .char1:hover {
+            background: linear-gradient(180deg, rgb(180, 19, 19), white 100%);
+        }
+
+        #btn .num0 {
+            width: 130px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="cal">
+        <div id="top">计算器By Garfill</div>
+        <div id="screen">
+            <div id="topp"></div>
+            <div id="low"></div>
+        </div>
+        <div id="btn">
+            <ul>
+                <li>
+                    <div class="ac" id="ac">AC</div>
+                </li>
+                <li>
+                    <div class="btn char">%</div>
+                </li>
+                <li>
+                    <div class="btn char">/</div>
+                </li>
+                <li>
+                    <div class="btn char">*</div>
+                </li>
+                <li>
+                    <div class="btn num">7</div>
+                </li>
+                <li>
+                    <div class="btn num">8</div>
+                </li>
+                <li>
+                    <div class="btn num">9</div>
+                </li>
+                <li>
+                    <div class="btn char">-</div>
+                </li>
+                <li>
+                    <div class="btn num">4</div>
+                </li>
+                <li>
+                    <div class="btn num">5</div>
+                </li>
+                <li>
+                    <div class="btn num">6</div>
+                </li>
+                <li>
+                    <div class="btn char">+</div>
+                </li>
+                <li>
+                    <div class="btn num">1</div>
+                </li>
+                <li>
+                    <div class="btn num">2</div>
+                </li>
+                <li>
+                    <div class="btn num">3</div>
+                </li>
+                <li>
+                    <div class="btn num  num0">0</div>
+                </li>
+                <li>
+                    <div class="btn" id="dot">.</div>
+                </li>
+                <li>
+                    <div class="char1" id="eq">=</div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        var temp = "";
+        var pre = null;
+        var res = 0;
+        var btn = document.getElementsByClassName("btn");
+        var ac = document.getElementById("ac");
+        var topp = document.getElementById("topp");
+        var low = document.getElementById("low");
+        var eq = document.getElementById("eq");
+
+
+        ac.onclick = function () {
+            console.log("ac");
+            topp.innerHTML = "";
+            low.innerHTML = "";
+            temp = "";
+            init = 0;
+            pre = null;
+            res = 0;
+        }
+        eq.onclick = function () {
+                ans = eval(temp);
+                console.log(ans);
+                low.innerHTML = ans;
+            };
+
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].onclick = function () {
+                pre = low.innerHTML = btn[i].innerHTML;
+                temp += btn[i].innerHTML;
+                topp.innerHTML = temp;
+                console.log(temp + ";" + typeof temp);
+            };
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Typeof</title>
+    <style>
+        pre {
+            color: green;
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border: 1px dotted #333;
+            /* font:12px/1.5 Courier New; */
+        }
+    </style>
+
+</head>
+
+<body>
+<pre>
+&lt;script&gt;
+    alert(typeof 12345);
+    alert(typeof "abc");
+    alert(typeof document);
+&lt;/script&gt;
+</pre>          <!-- PRE闭合标签缩进会导致底部内边距增大 -->
+
+<script>
+    alert("typeof 12345 =\>" + typeof 12345+";\n"
+    +"typeof \'abc\ =\>'" +typeof "abc" +";\n"
+    +"typeof document =\>" + typeof document + "!"
+    )
+    
+</script>
+</body>
+
+</html>

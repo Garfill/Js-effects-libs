@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="enn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断数</title>
+    <style>
+        .contain {
+            text-align: center;
+        }
+
+        .num {
+            width: 200px;
+        }
+
+        #btn {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <input type="text" name="num" id="num" autocomplete="off">
+        <input type="button" value="判断数字位数" id="btn">
+    </div>
+    <script>
+    var btn = document.getElementById("btn");
+    var num = document.getElementById("num");
+    var temp;
+    var pos;
+    var sub;
+    var sub2;
+    num.onkeyup= function(){
+        this.value = this.value.replace(/[^(\d\\.)]/,"");
+    }
+    btn.onclick = function(){
+        pos = num.value.indexOf(".");
+        if(pos == -1){
+            var temp = parseInt(num.value);
+            (temp/10)<1 ? alert("个位数") : alert(num.value.length+"位数");
+        }else{
+            sub = num.value.slice(0,pos);
+            sub2 = num.value.slice(pos+1);
+            sub2.indexOf(".")!=-1? alert("格式不对") : alert(sub.length+"位整数"+"; "+sub2.length+"位小数");
+        }
+
+    }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面加载累加</title>
+    <style>
+        #num {
+            font: 50px bolder;
+            display: block;
+            margin: 20 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="num">
+        1
+    </span>
+
+    <script>
+        window.onload = function () {
+            var num = document.getElementById("num");
+            setTimeout(add,1000);
+            function add(){
+                let temp = parseInt(num.innerHTML);
+                temp++;
+                num.innerHTML = temp;
+                setTimeout(add,1000)
+            }
+
+        }
+    </script>
+</body>
+
+</html>

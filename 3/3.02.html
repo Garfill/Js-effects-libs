@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>四则运算</title>
+    <style>
+        #con {
+            width: 500px;
+            margin: auto;
+        }
+
+        input {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        span {
+            width: 25px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="con">
+        <input type="text" name="first" id="first" placeholder="num" autocomplete="off">
+        <input type="text" name="char" id="char" placeholder="char" autocomplete="off">
+        <input type="text" name="second" id="second" placeholder="num" autocomplete="off">
+        <span>=</span>
+        <span id="ans">?</span>
+        <button>四则运算</button>
+    </div>
+    <script>
+        var inpu = document.getElementsByTagName("input");
+        var first = document.getElementById("first");
+        var char = document.getElementById("char");
+        var second = document.getElementById("second");
+        var ans = document.getElementById("ans");
+        var btn = document.getElementsByTagName("button")[0];
+
+        function calcu(one, char, two) {
+            return eval(one + char + two)
+        }
+
+        function check() {
+            for (let i = 0; i < 3; i++) {
+                if (!inpu[i].value) {
+                    alert("还差点东西");
+                    return false;
+                }
+            }
+            return true;
+        }
+            inpu[0].onkeyup = function(){
+                this.value=this.value.replace(/[^\d]/,"")
+            }
+            inpu[1].onkeyup = function(){
+                this.value=this.value.replace(/[^(\+\-\*\/)]/,"")
+            }
+            inpu[2].onkeyup = function(){
+                this.value=this.value.replace(/[^\d]/,"")
+            }
+        btn.onclick = function () {
+
+            if (check()) {
+                let res = calcu(first.value, char.value, second.value);
+                ans.innerHTML = res;
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
