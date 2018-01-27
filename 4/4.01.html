@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>二级菜单 延时操作</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #nav {
+            background: blue;
+            width: 830px;
+            height: 40px;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        #nav ul {
+            list-style: none;
+            overflow: hidden;
+        }
+
+        #nav ul li {
+            width: 200px;
+            float: left;
+            text-align: center;
+            border: 3px white solid;
+        }
+
+        #nav ul li .item {
+            cursor: pointer;
+            color: black;
+            font-size: 30px;
+        }
+
+        #nav ul li .item:hover {
+            cursor: pointer;
+            background: red;
+        }
+
+
+
+        #nav .sub {
+            display: none;
+            margin: 0px 0 0 0;
+            background: skyblue;
+            position: absolute;
+        }
+
+        #nav .sub p span {
+            display: block;
+            width: 250px;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <ul>
+            <li>
+                <div class="item">1</div>
+                <div class="sub">
+                    <p>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item">2</div>
+                <div class="sub">
+                    <p>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+
+                    </p>
+                </div>
+
+            </li>
+            <li>
+                <div class="item">3</div>
+                <div class="sub">
+                    <p>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+
+                    </p>
+                </div>
+
+            </li>
+            <li>
+                <div class="item">4</div>
+                <div class="sub">
+                    <p>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+                        <span>1111111111</span>
+                        <span>2222222222</span>
+                        <span>3333333333</span>
+
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var lis = document.getElementsByTagName("li");
+        var sub = document.getElementsByClassName("sub");
+
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].onmouseenter = function () {
+                for (let j = 0; j < lis.length; j++) {
+                    sub[j].style.display = "none";
+                }
+                sub[i].style.display = "block";
+                var ssub = lis[i].getElementsByClassName("sub")[0];
+                ssub.onmouseenter = function (event) {
+
+                    clearTimeout(timer);
+                }
+            };
+            lis[i].onmouseleave = function () {
+                timer = setTimeout(function () {
+                    sub[i].style.display = "none"
+                }, 500);
+            };
+        }
+    </script>
+</body>
+
+</html>
