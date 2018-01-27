@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒计时</title>
+    <style>
+        #clock{
+            width: 300px;
+            margin: auto;
+            background: gray;
+        }
+        button{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock">
+        <input type="number" class="timer" min="0" value="0" id="min" autocomplete="off">minutes
+        <input type="number" class="timer" min="0" max="60" value="0" id="sec" autocomplete="off">seconds
+        <input type="button" value="启动" id="btn">
+    </div>
+</body>
+<script>
+    var min = document.getElementById("min");
+    var sec = document.getElementById("sec");
+    var btn = document.getElementById("btn");
+    var flag = false;
+    btn.onclick = function () {
+        if (!flag) {
+            timer = setInterval(clockon, 1000);
+            flag = true;
+            btn.value = "Cancel";
+        } else {
+            clearInterval(timer);
+            btn.value = "启动";
+            flag = false;
+        }
+    };
+
+    function clockon() {
+        var secs = parseInt(sec.value);
+        var mins = parseInt(min.value);
+        if (secs == 0 && mins == 0) {
+            alert("done");
+            clearInterval(timer);
+        }
+        else if (secs > 0) {
+            sec.value = secs - 1;
+        } else {
+            sec.value = "59";
+            min.value = mins - 1;
+        }
+
+    }
+</script>
+
+</html>
