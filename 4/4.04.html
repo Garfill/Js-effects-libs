@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>求参数总和</title>
+</head>
+
+<body>
+    <pre>
+        &lt;script type="text/javascript"&gt;
+        var i = iResult = 0
+        function sum()
+        {
+            for (var i = 0; i < arguments.length; i++)
+            {
+                iResult += arguments[i]
+            }
+            return iResult
+        }
+        //应用
+        alert(sum(1,2,3,4,5,6,7,8,9,10)) //输出55
+        &lt;/script&gt;
+</pre>
+
+
+    <script>
+        var res = i = 0;
+
+        function sum() {
+            for (i = 0; i < arguments.length; i++) {
+            // for(i in arguments){
+                res += arguments[i];
+            }
+            return res;
+        }
+        // alert(sum(1, 2, 3, 4, 4));
+        sum(1,2,3,4,6)
+        //用for in 语句返回参数类型为string
+    </script>
+</body>
+
+</html>

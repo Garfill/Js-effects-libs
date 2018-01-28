@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS函数</title>
+
+    <style>
+        #out{
+            widows: 300px;
+            height: 300px;
+            border: 2px orange solid;
+        }
+        input{
+            background: orange;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="out">
+        <input type="button" value="get" id="gets">
+        <input type="button" value="change" id="changes">
+        <input type="button" value="set" id="sets">
+    </div>
+
+
+    <script>
+    var con = document.getElementById("out");
+    var inp = document.getElementsByTagName("input");
+    inp[0].onclick = function(){
+        var w = getComputedStyle(con,null)['width'];
+        var h = getComputedStyle(con,null)['height'];
+        var bg = getComputedStyle(con,null)['backgroundColor'];
+        alert("width:"+w+"\nheight:"+h+"\nbackground-color"+bg);
+    }
+    inp[1].onclick = function(){
+        con.style.cssText = "width:100px;height:400px;background:black";
+    };
+    
+    </script>
+</body>
+
+</html>
