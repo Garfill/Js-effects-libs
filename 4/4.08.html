@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圈圈评分</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .contain {
+            width: 50%;
+            height: 30px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .contain span:first-child {
+            color: gray;
+            float: left;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .contain ul {
+            list-style: none;
+            float: left;
+        }
+
+        .contain ul li {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .contain .cir {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            background: gray;
+            cursor: pointer;
+        }
+
+        .contain .command {
+            background: rgb(238, 238, 73);
+            width: 200px;
+            height: 100px;
+            display: none;
+            clear: both;
+            position: absolute;
+            top: 30px;
+        }
+
+        .contain .cir.active {
+            background: rgb(209, 82, 181);
+        }
+
+        #coms {
+            float: left;
+            background: rgb(238, 238, 73);
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <span>点击打分</span>
+        <ul>
+            <li>
+                <div class="cir"></div>
+            </li>
+            <li>
+                <div class="cir"></div>
+            </li>
+            <li>
+                <div class="cir"></div>
+            </li>
+            <li>
+                <div class="cir"></div>
+            </li>
+            <li>
+                <div class="cir"></div>
+            </li>
+        </ul>
+        <div class="command"></div>
+    </div>
+
+    <script>
+        var cir = document.getElementsByClassName("cir");
+        var command = document.getElementsByClassName("command")[0];
+        var coms = document.getElementById("coms");
+        var flag = true;
+        var score;
+        var msg = [
+            "很不满意|差得太离谱，与卖家描述的严重不符，非常不满",
+            "不满意|部分有破损，与卖家描述的不符，不满意",
+            "一般|质量一般，没有卖家描述的那么好",
+            "满意|质量不错，与卖家描述的基本一致，还是挺满意的",
+            "非常满意|质量非常好，与卖家描述的完全一致，非常满意"
+        ]
+
+
+        for (var i = 0; i < cir.length; i++) {
+            cir[i].onmouseenter = function (num) {
+                return function () {
+                    for (var j = 0; j < cir.length; j++) {
+                        cir[j].classList.remove("active");
+                    }
+                    for (var k = 0; k < num + 1; k++) {
+                        cir[k].classList.add("active");
+                    }
+                    command.style.display = "block";
+                    command.innerHTML = msg[num];
+                    command.style.left = (parseInt(cir[num].offsetLeft) - 100) + "px"
+
+                }
+            }(i);
+            cir[i].onmouseleave = function () {
+                if (flag) {
+                    for (var j = 0; j < cir.length; j++) {
+                        cir[j].classList.remove("active");
+                        command.style.display = "none";
+                    }
+                } else {
+                    for (var j = 0; j < cir.length; j++) {
+                        cir[j].classList.remove("active");
+                    }
+                    for (var j = 0; j < score+1; j++) {
+                        cir[j].classList.add("active");
+                    }
+                    command.style.display = "none";
+                        console.log(score+1);
+
+                }
+
+            }
+            cir[i].onclick = function (num) {
+                return function () {
+                    for (var j = 0; j < cir.length; j++) {
+                        cir[j].classList.remove("active");
+                    }
+                    for (var k = 0; k < num + 1; k++) {
+                        cir[k].classList.add("active");
+                    }
+                    command.style.display = "none";
+                    flag = false;
+                    score = num;
+                    console.log(score+1);
+                }
+            }(i);
+        }
+    </script>
+</body>
+
+</html>
