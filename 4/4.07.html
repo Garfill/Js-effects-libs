@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组练习</title>
+    <style>
+        .test {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            color: black;
+            background: rgb(240, 232, 232);
+            font-size: 18px;
+            border: 1px dotted rgb(99, 193, 224);
+            margin: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="test" id="t1"></div>
+    <input type="button" value="删除第一项">
+    <input type="button" value="删除最后项">
+    <div class="test" id="t2"></div>
+    <input type="button" value="复制">
+    <input type="button" value="还原">
+    <div class="test" id="t3"></div>
+    <input type="button" value="还原">
+    <input type="button" value="删除前三">
+    <input type="button" value="删二至三">
+    <input type="button" value="第二项后插入">
+    <input type="button" value="交换二三">
+
+
+    <script>
+        var inp = document.getElementsByTagName("input");
+        var t1 = document.getElementById("t1");
+        var t2 = document.getElementById("t2");
+        var t3 = document.getElementById("t3");
+        var arr1 = ["JAN ", "FEB ", "DEC ", "NOV ", "OCT ", "SEP"];
+        var arr2 = [1, 2, 3, 4, 5, 6, 7];
+        var arr3 = ['HELLO ', 'WORLE ', 'GOD ', 'MATH ', 'ENG ', 'PROG'];
+        t1.innerHTML = arr1;
+        t2.innerHTML = arr2;
+        t3.innerHTML = arr3;
+        var f1 = true;
+        var f2 = true;
+
+        inp[0].onclick = function () {
+            (arr1.indexOf("JAN ") > -1) ? arr1.shift(): arr1.unshift('JAN ');
+            t1.innerHTML = arr1;
+            if (f1) {
+                this.value = this.value.replace("删除", "添加");
+                f1 = false;
+            } else {
+                this.value = this.value.replace("添加", "删除");
+                f1 = true;
+            }
+        }
+        inp[1].onclick = function () {
+            arr1.indexOf("SEP") > -1 ? arr1.pop() : arr1.push("SEP");;
+            t1.innerHTML = arr1;
+            if (f2) {
+                this.value = this.value.replace("删除", "添加");
+                f2 = false;
+            } else {
+                this.value = this.value.replace("添加", "删除");
+                f2 = true;
+            }
+        }
+        inp[2].onclick = function(){
+            let temp = t2.innerHTML.split(",");
+            t2.innerHTML = temp.concat(arr2)
+        }
+        inp[3].onclick = function(){
+            let temp = t2.innerHTML.split(",");
+            t2.innerHTML = temp.slice(0,arr2.length);
+        }
+
+        inp[5].onclick = function(){
+            t3.innerHTML = arr3.slice(3);
+            console.log(arr3);
+        }
+        inp[6].onclick = function(){
+            let temp = arr3.slice();
+            temp.splice(1,2);
+            t3.innerHTML = temp;
+            console.log(arr3+"+"+temp);
+
+        }
+        inp[7].onclick = function(){
+            let temp = arr3.slice();
+            temp.splice(3,0,"charu");
+            t3.innerHTML = temp;
+            console.log(arr3+"+"+temp);
+
+        }
+        inp[8].onclick = function(){
+            let temp = arr3[1];
+            arr3.splice(1,1);
+            console.log(arr3+"+"+temp);
+
+            arr3.splice(2,0,temp);
+            console.log(arr3+"+"+temp);
+            t3.innerHTML = arr3;
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>
