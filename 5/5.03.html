@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1;0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示keycode</title>
+
+    <style>
+        #test {
+            font-size: 30px;
+            width: 500px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test">单击显示keycode</div>
+
+    <script>
+        var test = document.getElementById('test');
+
+        document.addEventListener("keyup", function (event) { //用文件捕捉
+            var temp = event.keyCode;
+            // console.log(temp);
+            test.innerHTML = temp;
+            return false;
+        }, false);
+    </script>
+</body>
+
+</html>

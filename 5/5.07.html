@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘控制</title>
+    <style>
+        #test {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script>
+        var te = document.getElementById("test");
+        var step = 5;
+        var dir = 1;
+        document.onkeydown = function (event) {
+            change(event.keyCode);
+            console.log(event.keyCode)
+        }
+
+        function change(num) {
+            switch (num) {
+                case 37:
+                    move(-step,dir);        //识别keycode
+                    break;
+                case 39:
+                    move(step,dir);
+                    break;
+                case 38:
+                    move(-step,-dir);
+                    break;
+                case 40:
+                    move(step,-dir);
+                    break;
+            }
+        }
+            //移动函数
+        function move(num,bol) {
+            if (bol>0) {
+                var timer = setTimeout(function () {
+                    te.style.left = (parseInt(te.offsetLeft) + num) + "px";
+                }, 10);
+
+            } else {
+                var timer = setTimeout(function () {
+                    te.style.top = (parseInt(te.offsetTop) + num) + "px";
+                }, 10);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

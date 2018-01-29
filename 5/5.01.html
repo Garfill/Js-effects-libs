@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟select控件</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: seagreen;
+        }
+
+        #container {
+            width: 300px;
+            height: 20px;
+            margin: 30px auto;
+            padding: 5px;
+            background: snow;
+            border-radius: 5px;
+            /* overflow: hidden; */
+            position: relative;
+        }
+
+        #container ul {
+            list-style: none;
+        }
+
+        #container ul li {
+            display: inline-block;
+            cursor: pointer;
+
+        }
+
+        #container li:first-child {
+            width: 80%;
+        }
+
+        #container #search {
+            background: blue;
+            border-radius: 3px;
+        }
+
+        #container #item {
+            background: orange;
+            display: none;
+        }
+
+
+        #container #item p {
+            border-bottom: 2px solid white
+        }
+
+        #container #item p:hover {
+            background: black;
+            color: white;
+        }
+
+        #container #btn {
+            width: 15%;
+            background: yellowgreen;
+            position: absolute;
+            top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul>
+            <li>
+                <div id="search">choose</div>
+                <div id="item">
+                    <p>DT</p>
+                    <p>LOL</p>
+                    <p>EA</p>
+                    <p>NK</p>
+                </div>
+            </li>
+            <li>
+                <p id="btn">search</p>
+            </li>
+    </div>
+
+    <script>
+        var search = document.getElementById("search");
+        var item = document.getElementById("item");
+        var ps = item.getElementsByTagName("p");
+        
+
+        search.onclick = function (event) {
+            var now = item.style;
+            console.log(now);
+            item.style.display = (now.display=="block" ? "none" : "block");
+            (event || window.event).cancelBubble = true; //防止冒泡
+        }
+        for (var i = 0; i < ps.length; i++) {
+            ps[i].onclick = function () {
+                    item.className = "";
+                    search.innerHTML = this.innerHTML;
+            };
+        }
+        document.onclick = function () {
+            console.log("click")
+            item.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

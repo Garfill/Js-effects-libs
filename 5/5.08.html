@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击闪烁</title>
+    <style>
+        #te {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 50px;
+            left: 40px;
+            line-height: 100px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="te">shark</div>
+
+    <script>
+        var te = document.getElementById("te");
+        var timer;
+        te.onclick = shark;
+
+        function shark() {
+            var i = 0;//函数开始时重置i
+            clearInterval(timer);                       //判断奇偶，奇数（按下去第一次运行）消失，偶数显示
+            timer = setInterval(function () {
+                te.style.display = (i++ % 2 ? "none" : "block");
+                i > 8 && (clearInterval(timer));
+            }, 100)
+
+            //我的做法：先插入消失，计算时间后再插入显示，工作量大，需要每个插入
+            // t1 = setTimeout(function(){
+            //     te.style.display = "none";
+            // },100)
+            // t2 = setTimeout(function(){
+            //     te.style.display = "block";
+            // },200)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单击显示坐标</title>
+
+
+<style>
+    *{
+        padding: 0;
+        margin: 0%;
+        box-sizing: border-box;
+    }
+    #out{
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    </style>
+</head>
+<body>
+    <div id="out">200*200s</div>
+
+    <script>
+    // document.onclick = function(event){
+    //     console.log(event.clientX);
+    //     console.log(event.clientY)
+    // }
+    document.getElementById("out").onclick = function(event){
+        console.log(event.screenX);
+        console.log(event.screenY)
+    }
+    </script>
+</body>
+</html>

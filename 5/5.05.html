@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大图显示</title>
+
+    <style>
+        #pic {
+            width: 700px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        #pic ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        #pic ul li {
+            display: inline-block;
+            width: 150px;
+            height: 200px;
+            margin: 10px;
+            border: 1px solid gray;
+            cursor: pointer;
+        }
+
+        #pic ul li img {
+            height: 100%;
+            width: 100%;
+        }
+
+        #show {
+            width: 300px;
+            height: 300px;
+            border: 3px solid red;
+            position: absolute;
+            display: none;
+        }
+
+        #show img {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pic">
+        <ul>
+            <li>
+                <img src="./../../img/images/505/shirt_1.jpg" alt="">
+            </li>
+            <li>
+                <img src="./../../img/images/505/shirt_2.jpg" alt="">
+            </li>
+            <li>
+                <img src="./../../img/images/505/shirt_3.jpg" alt="">
+            </li>
+            <li>
+                <img src="./../../img/images/505/shirt_4.jpg" alt="">
+            </li>
+        </ul>
+        <div id="show">
+            <img src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        var pic = document.getElementById("pic");
+        var imgs = pic.getElementsByTagName("img");
+        var show = document.getElementById("show");
+        var img = show.getElementsByTagName("img")[0];
+
+        for (var i = 0; i < imgs.length - 1; i++) {
+            imgs[i].onmouseenter = function (num, event) {
+                return  function (event) {
+                    img.src = imgs[num].src;
+                    showon(num,event);
+
+                    // show.style.display = "block";
+                    // // console.log(event.clientY + "+" + event.clientX)
+                    // show.style.top = event.clientY + "px";
+                    // show.style.left = event.clientX + "px";
+                }
+            }(i);
+            imgs[i].onmousemove = function (num, event) {
+                return function (event) {
+                    img.src = imgs[num].src;
+                    showon(num,event);
+
+
+                    // show.style.display = "block";
+                    // // console.log(event.clientY + "+" + event.clientX)
+                    // show.style.top = event.clientY + "px";
+                    // show.style.left = event.clientX + "px";
+                }
+            }(i);
+            imgs[i].onmouseleave = function () {
+                show.style.display = "none";
+            }
+        }
+
+        function showon(num, event) {
+            show.style.display = "block";
+            // console.log(event.clientY + "+" + event.clientX)
+            show.style.top = event.clientY + "px";
+            show.style.left = event.clientX + "px";
+        }
+    </script>
+</body>
+
+</html>
