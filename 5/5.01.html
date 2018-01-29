@@ -97,7 +97,7 @@
             var now = item.style;
             console.log(now);
             item.style.display = (now.display=="block" ? "none" : "block");
-            (event || window.event).cancelBubble = true; //防止冒泡
+            event.cancelBubble = true; //防止冒泡
         }
         for (var i = 0; i < ps.length; i++) {
             ps[i].onclick = function () {
