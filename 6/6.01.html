@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>完美拖拽</title>
+
+    <style>
+    body{
+        background: gray;
+        opacity: 0.5;
+    }
+    #te{
+        width: 200px;
+        height: 100px;
+        background: white;
+        border: 1px solid red;
+        position: relative;
+    }
+    </style>
+</head>
+<body>
+    <div id="te">完美拖拽</div>
+
+    <script>
+    var te = document.getElementById("te");
+    var dx = dy = 0;
+    var bDrag = false;
+    te.onmousedown = function(event){
+        bDrag = true;
+        dx = event.clientX - te.offsetLeft;
+        dy = event.clientY - te.offsetTop;
+        return false;
+    }
+    document.onmousemove = function(event){
+        if(!bDrag) return;
+        te.style.left = (event.clientX - dx)+"px";
+        te.style.top = (event.clientY - dy)+"px";
+    }
+    te.onmouseup = function(event){
+        bDrag = false;
+        
+    }
+    </script>
+</body>
+</html>

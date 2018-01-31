@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仿微博效果</title>
+    <style>
+        body {
+            background: gray;
+        }
+
+        #container {
+            background: snow;
+            border-radius: 10px;
+            width: 500px;
+            margin: 10px auto;
+            overflow: hidden;
+            /* position:absolute; */
+        }
+
+        #info {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        #info input,
+        #info textarea {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #info textarea {
+            width: 100%;
+        }
+
+        #info #count {
+            text-align: end;
+            margin-bottom: 10px;
+        }
+
+        #info button {
+            background: green;
+            color: snow;
+            font-size: 25px;
+        }
+
+        #comments {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        #pop {
+            background: gray;
+            margin: 0 auto 10px;
+        }
+
+        .next {
+            width: 100%;
+            height: 50px;
+            background: silver;
+            margin-bottom: 20px;
+            animation: show 0.5s linear;
+            position: relative;
+        }
+
+        @keyframes show {
+            0% {
+                height: 0;
+                opacity: 0;
+            }
+            100% {
+                height: 50px;
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="info">
+            <input type="text" id="usr" required value="" placeholder="你是谁" autocomplete="off">
+            <textarea col="30" name="com" id="com" required placeholder="开始你的表演" autocomplete="off"></textarea>
+            <div id="count">还可以输入
+                <span>140</span>个字
+                <button>发布</button>
+            </div>
+        </div>
+        <div id="comments">
+            <div id="pop">大家在说</div>
+            <div id="content"></div>
+        </div>
+    </div>
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var usr = document.getElementById("usr");
+        var com = document.getElementById("com");
+        var cons = document.getElementById("content");
+        var count = document.getElementsByTagName("span")[0];
+        var close = document.getElementsByClassName("close");
+        com.onkeyup = function () {
+            // console.log(com.value);
+            count.innerHTML = 140 - parseInt(com.value.length);
+
+        }
+
+        btn.onclick = function () {
+            if (usr.value && com.value) {
+                var next = document.createElement("div");
+                next.className = "next";
+                var user = document.createElement("div");
+                var cont = document.createElement("div");
+                var close = document.createElement("div");
+
+                user.innerHTML = usr.value;
+                cont.innerHTML = com.value;
+                close.innerHTML = "&times;"
+                close.className = "close";
+                close.onclick = function () {
+                    this.parentNode.className = ""
+                    cons.removeChild(this.parentNode)
+                }
+
+                next.appendChild(user);
+                next.appendChild(cont);
+                next.appendChild(close);
+                (cons.children.length > 0) ? (cons.insertBefore(next, cons.firstChild)) : (cons.appendChild(next));
+            } else {
+                alert("还不够");
+            }
+        };
+
+    </script>
+</body>
+
+</html>
