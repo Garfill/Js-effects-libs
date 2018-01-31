@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>根据鼠标点击移动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #out {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: gray;
+            opacity: 0.5;
+        }
+
+        #inn {
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="out">
+        <div id="inn"></div>
+    </div>
+
+    <script>
+        var inn = document.getElementById("inn");
+        var xtar = ytar = 0;
+        var xspeed = yspeed = 0;
+        var dx = dy = 0;
+        var timer = null;
+        document.onclick = function move(event) {           //第一步：取得目标点
+            xtar = event.clientX;
+            // console.log("xtar:"+xtar)
+            ytar = event.clientY;
+            // console.log("ytar:"+ytar)
+
+            do_move(xtar, ytar);
+        };
+
+        function do_move(xtar,ytar) {                       //第二步：设置timer
+            clearInterval(timer)
+            timer = setInterval(move, 30);
+        }
+
+        function move() {                                   //timer的真正内容：取得距离差，计算速度，最后进行动作
+            dx = xtar - inn.offsetLeft;
+            dy = ytar - inn.offsetTop;
+            xspeed = dx / 10;
+            xspeed = xspeed > 0 ? Math.ceil(xspeed) : Math.floor(xspeed);
+            // console.log("xspeed:"+xspeed);
+            yspeed = dy / 10;
+            yspeed = yspeed > 0 ? Math.ceil(yspeed) : Math.floor(yspeed);
+            // console.log("yspeed:"+yspeed);
+
+            if ((inn.offsetTop == ytar)&& (inn.offsetLeft == xtar)) {
+                console.log("get it");
+                clearInterval(timer);
+            } else {
+                inn.style.left = inn.offsetLeft + xspeed + "px";
+                inn.style.top = inn.offsetTop + yspeed + "px";
+            }
+        }
+    </script>
+</body>
+
+</html>

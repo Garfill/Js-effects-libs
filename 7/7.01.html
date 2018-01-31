@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自动播放幻灯片</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: gray;
+        }
+
+        #container {
+            width: 492px;
+            height: 172px;
+            margin: 10px auto;
+            border: 10px solid white;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #container #pics {
+            width: 490px;
+            height: 170px;
+            border: 1px solid red;
+        }
+
+        #container ul {
+            width: 490px;
+            height: 850px;
+            position: absolute;
+
+        }
+
+        #container ul li {
+            width: 490px;
+            height: 170px;
+            list-style: none;
+            opacity: 0.5;
+        }
+
+        #container ul li.current {
+            opacity: 1.0;
+        }
+
+        #container ul li:nth-child(1) {
+            background: red;
+        }
+
+        #container ul li:nth-child(2) {
+            background: yellow;
+        }
+
+        #container ul li:nth-child(3) {
+            background: blue;
+        }
+
+        #container ul li:nth-child(4) {
+            background: snow;
+        }
+
+        #container ul li:nth-child(5) {
+            background: black;
+        }
+
+
+        #container #list {
+            width: auto;
+            position: absolute;
+            right: 3px;
+            bottom: 3px;
+        }
+
+        #container #list span {
+            display: inline-block;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 10px;
+            background: orange;
+            cursor: pointer;
+        }
+
+        #container #list span.active {
+            background: yellowgreen;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="pics">
+            <ul>
+                <li class="current">
+                    <img src="./../images/402/01.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./../images/402/02.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./../images/402/03.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./../images/402/04.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./../images/402/05.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <div id="list">
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+        </div>
+    </div>
+    <script>
+        var con = document.getElementsByTagName("ul")[0];
+        var img = con.getElementsByTagName("li");
+        var btn = document.getElementsByTagName("span");
+        var index = 0;
+        var flag = true;
+        var timer = null;
+        //先写轮播函数
+        function next() {
+            flag ? index++ : index--; //flag确定方向                          
+            index <= 0 && (index = 0, flag = true);
+            index >= btn.length - 1 && (index = btn.length - 1, flag = false);
+            cover(index); //显色
+        }
+        var auto = setInterval(next, 3000);
+
+        con.onmouseenter = function () {
+            clearInterval(auto)
+        }
+        con.onmouseleave = function () {
+            auto = setInterval(next, 3000);
+        }
+
+        //显色
+        function cover(index) { //假设默认所有图片都看不见（仍占位），显示所需图片
+            for (var i = 0; i < img.length; i++) {
+                btn[i].className = "";
+                img[i].className = "";
+            }
+            img[index].className = "current";
+            btn[index].className = "active";
+            do_move(-(index * img[0].offsetHeight)); //显色后进行移动
+        }
+        //移动
+        function do_move(itarget) {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                move(itarget)
+            }, 30);
+        }
+        function move(itarget) {        //带缓冲
+            var speed = (itarget - con.offsetTop) / 10;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            if (con.offsetTop == itarget) {
+                clearInterval(timer);
+            } else {
+                con.style.top = con.offsetTop + speed + "px"
+            }
+        }
+
+
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].onmouseover = function () {
+                index = i;
+                cover(index);
+            }
+        }
+
+
+            //先写普遍的，最后细化到按钮
+
+
+
+
+
+
+
+        // function autoplay() {
+
+        //     if ((next < 5&&speed>0)||next ==-1) {
+        //         var timer = setInterval(function move() {
+        //             imgs.style.top = (parseInt(imgs.style.top) - speed) + "px";
+        //             let temp = imgs.style.top.length;
+        //             // console.log(parseInt(imgs.style.top.slice(1, temp - 2)) % 170 == 0);
+        //             if (parseInt(imgs.style.top.slice(1, temp - 2)) % 170 == 0) {
+        //                 index++;
+        //                 next = index+1;
+        //                 clearInterval(timer)
+        //                 setTimeout(autoplay, 1000);
+        //             }
+        //         }, 30)
+        //     }
+        //     if (next == 5||speed<0) {
+        //         speed = -10;
+        //         var timer = setInterval(function move() {
+        //             imgs.style.top = (parseInt(imgs.style.top) - speed) + "px";
+        //             let temp = imgs.style.top.length;
+        //             // console.log(parseInt(imgs.style.top.slice(1, temp - 2)) % 170 == 0);
+        //             if (parseInt(imgs.style.top.slice(1, temp - 2)) % 170 == 0) {
+        //                 index--;
+        //                 next=index-1;
+        //                 next==-1&&(speed=10);
+        //                 clearInterval(timer)
+        //                 setTimeout(autoplay, 1000);
+        //             }
+        //         }, 30)
+        //     }
+        // }
+        // autoplay();
+    </script>
+</body>
+
+</html>
