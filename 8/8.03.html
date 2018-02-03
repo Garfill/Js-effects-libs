@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模仿clone</title>
+    <style>
+        body{
+            background: gray;
+        }
+        .te{
+            width: 100px;
+            height: 100px;
+            background: indianred;
+            position: absolute;
+            border: 2px solid snow;
+        }
+        #t2{
+            left: 300px;
+        }
+        .copy{
+            opacity: 0.5;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="t1" class="te">1</div>
+    <div id="t2" class="te">2</div>
+<script>
+    var old = document.getElementsByClassName('te');
+    for(var i=0;i<old.length;i++){
+        old[i].onmousedown = function(event){
+            this.classList.add("current");
+
+            var dx = event.clientX - this.offsetLeft;
+            var dy = event.clientY - this.offsetTop;
+            console.log("dx:"+dx+";dy:"+dy);
+            move(dx,dy);
+            }
+    }
+    function move(dx,dy){
+        var cur = document.getElementsByClassName("current")[0];
+        var copy = cur.cloneNode(false);
+        copy.classList.add("copy");
+        document.body.appendChild(copy);
+        copy.style.left = cur.offsetLeft;
+        copy.style.top = cur.offsetTop;
+        document.onmousemove = function (ev) {
+            copy.style.left = ev.clientX - dx +"px";
+            copy.style.top = ev.clientY - dy +"px";
+        };
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            console.log(cur);
+            cur.style.left = copy.offsetLeft +"px";
+            cur.style.top = copy.offsetTop +"px";
+            document.body.removeChild(copy);
+            cur.classList.remove("current");
+        }
+    }
+
+</script>
+</body>
+</html>
