@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模仿手机解锁</title>
+
+    <style>
+        #phone {
+            width: 400px;
+            border: 2px solid black;
+            margin: 10px auto;
+            /* position: relative; */
+
+        }
+
+        #screen {
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+            margin: 1px auto;
+            position: relative;
+
+        }
+
+        #lock {
+            width: 360px;
+            height: 50px;
+            border: 1px yellow solid;
+            margin: 5px auto;
+            position: relative;
+        }
+
+        #slide {
+            width: 50px;
+            height: 95%;
+            background: blue;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="phone">
+        <div id="screen">screen</div>
+        <div id="lock">
+            <div id="slide"></div>
+        </div>
+    </div>
+
+    <script>
+        var btn = document.getElementById("slide");
+        console.log(btn.offsetWidth);
+        var lock = document.getElementById("lock");
+        console.log(lock.clientWidth);
+        // console.log(btn.offsetLeft)
+        maxL = lock.clientWidth - btn.offsetWidth;
+        btn.onmousedown = function (event) {
+            var dx = event.clientX - btn.offsetLeft;
+            // console.log(dx);
+
+            document.onmousemove = function (event){
+                var l = event.clientX-dx;
+                console.log(l);
+                l < 0 && (l = 0);
+                l > maxL && (l = maxL);
+                btn.style.left = l +"px";
+                return false;
+                // console.log("get it")
+            };
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
+        }
+    </script>
+</body>
+
+</html>

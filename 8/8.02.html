@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>滑动条</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: black;
+        }
+        #contain{
+            width: 400px;
+            height: 300px;
+            margin: 10px auto;
+
+        }
+        #contain #pic{
+            width: 100%;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        #contain #pic ul{
+            list-style: none;
+            width: 850px;
+            position: absolute;
+        }
+        #contain #pic ul li{
+            width: 100px;
+            height: 200px;
+            background: snow;
+            border-radius: 5px;
+            display: inline-block
+        }
+        #contain #bar{
+            background: snow;
+            width: 400px;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: absolute;
+            bottom: 0;
+        }
+        #contain #bar span{
+            background: red;
+            display: inline-block;
+            width: 20px;
+            color: snow;
+            text-align: center;
+            cursor: pointer;
+        }
+        #contain #bar span:nth-child(3){
+            float: right;
+        }
+        #contain #bar span:nth-child(2){
+            background: purple;
+            width: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="contain">
+        <div id="pic">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+            </ul>
+        </div>
+        <div id="bar">
+            <span>l</span><span id="inn">bar</span><span>r</span>
+
+        </div>
+    </div>
+    <script>
+        var pic = document.getElementsByTagName("ul")[0];
+        var bar = document.getElementById("inn");
+        var l = 0;
+        var score = 0;
+
+        bar.onmousedown = function (ev) {
+            var dx;
+            console.log("get it");
+            dx = ev.clientX - this.offsetLeft;
+            document.onmousemove = function (ev2) {
+                l = ev2.clientX - dx;
+                console.log(l);
+                (l<20) && (l =20);
+                (l>280)&&(l=280);
+                bar.style.left = l + "px";
+            };
+            document.onmouseup = function () {
+                score = (parseInt(bar.style.left) - 20) / bar.offsetWidth;
+                console.log(score);
+                var pic_dis = Math.ceil(pic.offsetWidth * score);
+                console.log(pic_dis);
+                pic.style.left = pic.offsetLeft - pic_dis +"px";
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+</html>
