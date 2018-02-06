@@ -92,7 +92,7 @@
 
         bar.onmousedown = function (ev) {
             var dx;
-            console.log("get it");
+            // console.log("get it");
             dx = ev.clientX - this.offsetLeft;
             document.onmousemove = function (ev2) {
                 l = ev2.clientX - dx;
@@ -103,9 +103,9 @@
             };
             document.onmouseup = function () {
                 score = (parseInt(bar.style.left) - 20) / bar.offsetWidth;
-                console.log(score);
+                // console.log(score);
                 var pic_dis = Math.ceil(pic.offsetWidth * score);
-                console.log(pic_dis);
+                // console.log(pic_dis);
                 pic.style.left = pic.offsetLeft - pic_dis +"px";
                 document.onmousemove = null;
             }

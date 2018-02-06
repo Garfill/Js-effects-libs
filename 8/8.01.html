@@ -52,9 +52,9 @@
 
     <script>
         var btn = document.getElementById("slide");
-        console.log(btn.offsetWidth);
+        // console.log(btn.offsetWidth);
         var lock = document.getElementById("lock");
-        console.log(lock.clientWidth);
+        // console.log(lock.clientWidth);
         // console.log(btn.offsetLeft)
         maxL = lock.clientWidth - btn.offsetWidth;
         btn.onmousedown = function (event) {
@@ -63,7 +63,7 @@
 
             document.onmousemove = function (event){
                 var l = event.clientX-dx;
-                console.log(l);
+                // console.log(l);
                 l < 0 && (l = 0);
                 l > maxL && (l = maxL);
                 btn.style.left = l +"px";

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pages</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #con {
+            width: 100%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        #con ul {
+            list-style: none;
+        }
+
+        #con ul li {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* #con ul li:hover{
+            width: 150px;
+            height: 120px;
+        } */
+
+        #con ul li:nth-child(odd) {
+            background: green;
+        }
+
+        #con ul li:nth-child(even) {
+            background: red
+        }
+    </style>
+</head>
+
+<body>
+    <div id="con">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>6</li>
+            <li>8</li>
+        </ul>
+    </div>
+
+    <script>
+        var tes = document.getElementsByTagName("li");
+        var tar_w = tar_h = 150;
+        var old_w = old_h = 100;
+        var x_change = null;
+        var elem = null;
+        var flag = true;
+        var speed = 0;
+        for (let i = 0; i < tes.length; i++) {
+            tes[i].onmouseenter = function () {
+                flag = true;
+                speed = 1;
+                console.log(speed+":"+flag)
+                togg(tes[i]);
+            };
+            tes[i].onmouseleave = function () {
+                flag = false;
+                speed = -1;
+                console.log(speed+":"+flag)
+                togg(tes[i]);
+            }
+        }
+
+        function togg(elem) {
+            clearInterval(x_change);
+            x_change = setInterval(function () {
+                do_change(elem);
+            }, 1);
+        }
+
+
+        function do_change(elem) {
+
+            if (flag && (parseInt(elem.style.width) == tar_w)) {
+                clearInterval(x_change);
+            }
+            else if(!flag && (parseInt(elem.style.width) == old_w)) {
+                clearInterval(x_change);
+            } 
+            else {
+                elem.style.width = elem.offsetWidth + speed + "px";
+            }
+        }
+        
+    </script>
+</body>
+
+</html>
